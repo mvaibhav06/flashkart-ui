@@ -22,11 +22,8 @@ function App() {
         `Ordered 1x ${p.name} at ${new Date().toLocaleTimeString()}`,
         ...prev,
       ]);
-      loadData(); // Refresh stock levels immediately
+      loadData();
     } catch (err: unknown) {
-      // Fix 2: Changed 'any' to 'unknown'
-
-      // We safely check if the error came from our Axios HTTP request
       let errorMsg = "Transaction Failed";
       if (axios.isAxiosError(err) && err.response?.data?.error) {
         errorMsg = err.response.data.error;
@@ -50,7 +47,6 @@ function App() {
       <h1 style={{ color: "#2c3e50" }}>⚡ Flashkart Inventory Ledger</h1>
 
       <div style={{ display: "flex", gap: "20px" }}>
-        {/* Product Grid */}
         <div
           style={{
             flex: 2,
@@ -95,7 +91,6 @@ function App() {
           ))}
         </div>
 
-        {/* Transaction Log */}
         <div
           style={{
             flex: 1,
